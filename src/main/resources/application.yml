@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    database: h2
+    generate-ddl: true
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-admin-password: admin
+        web-allow-others: true
