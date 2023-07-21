@@ -9,5 +9,4 @@ spring:
     console:
       enabled: true
       settings:
-        web-admin-password: admin
         web-allow-others: true
