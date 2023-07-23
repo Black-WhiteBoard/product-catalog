@@ -16,7 +16,7 @@ public class Address implements Serializable {
     @Column
     private String state;
     @Column
-    private String zipCode;
+    private String zipcode;
 
     @Column
     private String type;

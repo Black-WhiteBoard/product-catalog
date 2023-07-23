@@ -9,4 +9,8 @@ public interface CustomerService {
     public List<Customer> getCustomer(String name);
 
     List<Customer> getAllCustomer();
+    List<Customer> getAllCustomerByCity(String city);
+    List<Customer> getCustomerByNameOrCityOrState(String name, String city, String zipcode);
+
+    List<Customer> getCustomerByNameAndCityAndState(String lastname, String city, String state);
 }

@@ -2,11 +2,9 @@ package com.productcatalog.entity;
 
 import lombok.Data;
 
-import javax.naming.directory.SearchResult;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -16,11 +14,11 @@ public class Customer implements Serializable {
     @Id
     private Integer customerId;
     @Column
-    private String firstName;
+    private String firstname;
     @Column
-    private String lastName;
+    private String lastname;
     @Column
     private Integer age;
-    @OneToMany(mappedBy = "customer")
-   private Set<Address> address;
+    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
+   private List<Address> address;
 }
