@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -20,14 +21,27 @@ public class ProductSearchController {
     @Autowired
     private ProductService productService;
     @GetMapping(value = "/product/brand/{brand}" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> getProductsByBrand(@PathVariable("brand") Integer brand) {
+    public ResponseEntity<List<Product>> getProductsByBrand(@PathVariable("brand") String brand) {
 
-        Optional<Product> product=productService.getProduct(brand);
-         if(product.isPresent()){
-             return ResponseEntity.ok(product.get());
+        List<Product> product=productService.getProductByName(brand);
+     if(!product.isEmpty()){
+             return ResponseEntity.ok(product);
          }else {
               throw  new DataNotFoundException(String.valueOf(brand));
          }
+
+    }
+
+
+    @GetMapping(value = "/product/brand" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Product>> getAllProducts() {
+
+        List<Product> product=productService.getAllProducts();
+        if(!product.isEmpty()){
+            return ResponseEntity.ok(product);
+        }else {
+            throw  new DataNotFoundException("No data");
+        }
 
     }
 
