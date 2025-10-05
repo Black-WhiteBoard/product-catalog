@@ -2,6 +2,9 @@ package com.productcatalog.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Generated;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Data
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -23,4 +28,5 @@ public class Product implements Serializable {
    @JsonProperty
     @Column(name = "category")
     private String catagory;
+
 }

@@ -4,6 +4,10 @@ spring:
     generate-ddl: true
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+  transaction:
+    rollback-on-commit-failure: true
+
+
 
 
 
@@ -21,9 +25,15 @@ spring:
 
   kafka:
      bootstrap-servers: localhost:9092
+     producer:
+       bootstrap-servers: localhost:9092
+       key-serializer: org.apache.kafka.common.serialization.StringSerializer
+       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+       transaction-id-prefix: -tx
      consumer:
        group-id: products-consumer-grp
        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
        value-deserializer : org.apache.kafka.common.serialization.StringDeserializer
+       isolation-level: READ_COMMITTED
 server:
   port : 8082
