@@ -5,9 +5,7 @@ import com.productcatalog.exception.DuplicateRecordException;
 import com.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.transaction.KafkaTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -30,7 +28,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product AddProduct(Product product) {
         String msg="Product created";
-
         kafkaTemplate.send("productsTopic",msg.concat(product.getName()));
         if(productRepository.existsById(product.getId()))
             throw new DuplicateRecordException("duplicate record");

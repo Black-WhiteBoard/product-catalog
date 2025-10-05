@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Data
-@Getter
-@Setter
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {

@@ -1,4 +1,4 @@
-package com.productcatalog.configuration;
+package com.productcatalog.listener;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Log4j2
 public class ProductConsumer {
 
-    @Transactional
-    @KafkaListener(topics = "productsTopic")
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @KafkaListener(topics = "productsTopic"/*,containerFactory = "getCustomListenerContainerFactory"*/,groupId = "products-group-1")
     public void processMessage(String msg) {
 log.info("Product consumer processed msg : {}",msg);
     }
