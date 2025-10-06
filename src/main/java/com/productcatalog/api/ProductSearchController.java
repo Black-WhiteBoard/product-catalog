@@ -47,7 +47,14 @@ public class ProductSearchController {
 
     @PostMapping(value = "/product",produces = MediaType.APPLICATION_JSON_VALUE,consumes =MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<String> addProduct( @RequestBody Product product){
-        Product addedProduct=productService.AddProduct(product);
+        Product addedProduct =null;
+          try {
+               addedProduct=productService.AddProduct(product);
+          }catch (Exception exp){
+
+              throw new ApplicationException(exp.getMessage());
+          }
+
          if (addedProduct!=null) {
              return  ResponseEntity.ok("Product added successfully !");
          }else{

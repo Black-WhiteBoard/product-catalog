@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReadAllProductsMessagesConsumer {
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    @KafkaListener(topics = "productsTopic"/*,containerFactory = "getCustomListenerContainerFactory"*/,groupId = "products-group-2")
+    @KafkaListener(topics = "productsTopic",containerFactory = "getCustomListenerContainerFactory",groupId = "products-group-2")
     public void processMessage(String msg) {
 log.info("Product consumer processed msg : {}",msg);
     }
