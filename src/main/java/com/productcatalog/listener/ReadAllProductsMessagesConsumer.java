@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Log4j2
 public class ReadAllProductsMessagesConsumer {
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     @KafkaListener(topics = "productsTopic",containerFactory = "getCustomListenerContainerFactory",groupId = "products-group-2")
     public void processMessage(String msg) {
 log.info("Product consumer processed msg : {}",msg);

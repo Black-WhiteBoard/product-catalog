@@ -48,7 +48,8 @@ public class CustomListenerContainerFactory {
     public ConsumerFactory<String,Product> customConsumerFactory() {
         Map<String,Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServerUrl);
-       // config.put(ConsumerConfig.GROUP_ID_CONFIG,consumerGroupId);
+        config.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG,"read_committed");
+        //config.put(ConsumerConfig.ISOLATION_LEVEL_DOC,"read_committed");
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,valueSerializer);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,keySerializer);
 

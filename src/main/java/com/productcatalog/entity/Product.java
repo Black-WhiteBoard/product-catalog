@@ -19,12 +19,16 @@ public class Product implements Serializable {
  public Product(){}
    @JsonProperty
     @Id
-    private Integer id;
+    private String id;
    @JsonProperty
     @Column(name = "name")
     private  String name;
    @JsonProperty
     @Column(name = "category")
     private String catagory;
+
+    @JsonProperty
+    @Column(name = "quantity")
+    private String  quantity;
 
 }
